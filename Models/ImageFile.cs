@@ -11,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EPiServerMvcKickstarter.Models
+namespace EPiServerMvcBootstrap.Models
 {
     [ContentType(DisplayName = "ImageFile", GUID = "1d497a10-2f4f-4088-b3c0-2abe026fe40c", Description = "")]
     [MediaDescriptor(ExtensionString = "jpg,jpeg,png,gif")]

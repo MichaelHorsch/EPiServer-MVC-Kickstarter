@@ -1,13 +1,13 @@
 ﻿using EPiServer;
 using EPiServer.Core;
-using EPiServerMvcKickstarter.Models;
+using EPiServerMvcBootstrap.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EPiServerMvcKickstarter.Extensions
+namespace EPiServerMvcBootstrap.Extensions
 {
     public static class DataFactoryExtensions
     {

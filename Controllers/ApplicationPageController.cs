@@ -1,8 +1,8 @@
 ﻿using EPiServer.Core;
 using EPiServer.SpecializedProperties;
 using EPiServer.Web.Mvc;
-using EPiServerMvcKickstarter.Models;
-using EPiServerMvcKickstarter.Extensions;
+using EPiServerMvcBootstrap.Models;
+using EPiServerMvcBootstrap.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using EPiServer;
 
-namespace EPiServerMvcKickstarter.Controllers
+namespace EPiServerMvcBootstrap.Controllers
 {
     public abstract class ApplicationPageController<T> : PageController<T> where T : TypedPageData
     {

@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EPiServerMvcKickstarter.Extensions
+namespace EPiServerMvcBootstrap.Extensions
 {
     public static class LinkItemCollectionExtensions
     {

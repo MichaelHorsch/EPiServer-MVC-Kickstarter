@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EPiServerMvcKickstarter.Models
+namespace EPiServerMvcBootstrap.Models
 {
     public abstract class TypedPageData : PageData
     {

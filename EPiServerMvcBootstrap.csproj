@@ -7,8 +7,8 @@
     <ProjectGuid>{6E3B3054-3973-4CF1-ABD0-85C6DB444350}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EPiServerMvcKickstarter</RootNamespace>
-    <AssemblyName>EPiServerMvcKickstarter</AssemblyName>
+    <RootNamespace>EPiServerMvcBootstrap</RootNamespace>
+    <AssemblyName>EPiServerMvcBootstrap</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
