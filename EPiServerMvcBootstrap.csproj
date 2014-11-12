@@ -138,6 +138,7 @@
   <ItemGroup>
     <Compile Include="Controllers\ApplicationPageController.cs" />
     <Compile Include="Extensions\DataFactoryExtensions.cs" />
+    <Compile Include="Extensions\ImageFileExtensions.cs" />
     <Compile Include="Extensions\LinkItemCollectionExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Models\ImageFile.cs" />

@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using EPiServer;
+using Castle.DynamicProxy;
 
 namespace EPiServerMvcBootstrap.Controllers
 {
@@ -47,6 +48,25 @@ namespace EPiServerMvcBootstrap.Controllers
             }
 
             return new List<U>();
+        }
+
+        protected string GetProxyBaseClassName(IProxyTargetAccessor proxy)
+        {
+            var className = string.Empty;
+            if (proxy != null)
+            {
+                var target = proxy.DynProxyGetTarget();
+                if (target != null)
+                {
+                    var baseType = target.GetType().BaseType;
+                    if (baseType != null)
+                    {
+                        className = baseType.Name;
+                    }
+                }
+            }
+
+            return className;
         }
     }
 }
