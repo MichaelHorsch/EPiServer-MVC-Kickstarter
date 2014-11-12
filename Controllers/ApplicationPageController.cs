@@ -50,9 +50,11 @@ namespace EPiServerMvcBootstrap.Controllers
             return new List<U>();
         }
 
-        protected string GetProxyBaseClassName(IProxyTargetAccessor proxy)
+        protected string GetProxyBaseClassName(ContentData data)
         {
             var className = string.Empty;
+
+            var proxy = data as IProxyTargetAccessor;
             if (proxy != null)
             {
                 var target = proxy.DynProxyGetTarget();
