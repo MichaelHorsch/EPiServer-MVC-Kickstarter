@@ -20,6 +20,17 @@ namespace EPiServerMvcBootstrap.Controllers
         }
 
         /// <summary>
+        /// Gets the current page and casts it to the current page type.
+        /// </summary>
+        public T CurrentPage
+        {
+            get
+            {
+                return (T)DataFactory.Instance.CurrentPage;
+            }
+        }
+
+        /// <summary>
         /// Transforms the LinkItemCollection object of children into a System.Generic.Collections.List object
         /// that contains PageData objects for each of the children that were in the childCollection parameter.
         /// </summary>
