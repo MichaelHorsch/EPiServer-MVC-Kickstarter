@@ -26,7 +26,15 @@ namespace EPiServerMvcBootstrap.Controllers
         {
             get
             {
-                return (T)DataFactory.Instance.CurrentPage;
+                var currentPage = DataFactory.Instance.CurrentPage;
+
+                if (currentPage == null)
+                {
+                    var pageRouteHelper = EPiServer.ServiceLocation.ServiceLocator.Current.GetInstance<EPiServer.Web.Routing.PageRouteHelper>();
+                    currentPage = pageRouteHelper.Page;
+                }
+
+                return (T)currentPage;
             }
         }
 
