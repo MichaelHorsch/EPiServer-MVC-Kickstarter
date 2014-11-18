@@ -141,6 +141,7 @@
     <Compile Include="Extensions\ImageFileExtensions.cs" />
     <Compile Include="Extensions\LinkItemCollectionExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Extensions\UrlExtensions.cs" />
     <Compile Include="Models\ImageFile.cs" />
     <Compile Include="Models\TypedBlockData.cs" />
     <Compile Include="Models\TypedPageData.cs" />
