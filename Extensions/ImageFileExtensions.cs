@@ -12,105 +12,6 @@ namespace EPiServerMvcBootstrap.Extensions
 {
     public static class ImageFileExtensions
     {
-        /// <summary>
-        /// Doing this complicated way for both cms preview and site images to work.
-        /// </summary>
-        /// <param name="imageFile">Pass in ContentReference image property</param>
-        /// <param name="model">Model that property is on</param>
-        /// <returns></returns>
-        /// for pages
-        public static string GetImageSrc(this ContentReference imageFile, BlockData model)
-        {
-            var currentContent = !ContentReference.IsNullOrEmpty(imageFile)
-                ? EPiServer.ServiceLocation.ServiceLocator.Current.GetInstance<EPiServer.IContentLoader>().Get<MediaData>(imageFile)
-                : null;
-
-            string language = null;
-            var iLocalizable = model as ILocalizable;
-            if (iLocalizable != null && iLocalizable.Language != null)
-            {
-                language = iLocalizable.Language.Name;
-            }
-
-            var image = (ImageFile)currentContent;
-            string imageUrl;
-            if (image != null)
-            {
-                imageUrl = UrlResolver.Current.GetUrl(image.ContentLink, language, new VirtualPathArguments() { ContextMode = ContextMode.Default });
-            }
-            else
-                imageUrl = "";
-
-
-            return imageUrl;
-        }
-
-        //for blocks
-        public static string GetImageSrc(this ContentReference imageFile, PageData model)
-        {
-            var currentContent = !ContentReference.IsNullOrEmpty(imageFile)
-                ? EPiServer.ServiceLocation.ServiceLocator.Current.GetInstance<EPiServer.IContentLoader>().Get<MediaData>(imageFile)
-                : null;
-
-            string language = null;
-            var iLocalizable = model as ILocalizable;
-            if (iLocalizable != null && iLocalizable.Language != null)
-            {
-                language = iLocalizable.Language.Name;
-            }
-
-            var image = (ImageFile)currentContent;
-            var imageUrl = UrlResolver.Current.GetUrl(image.ContentLink, language, new VirtualPathArguments() { ContextMode = ContextMode.Default });
-
-            return imageUrl;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="imageFile">Pass in ImageFile directly from media assets</param>
-        /// <param name="model">model that will hold media item</param>
-        /// <returns></returns>
-        /// for pages
-        public static string GetImageSrc(this ImageFile imageFile, PageData model)
-        {
-            var currentContent = imageFile != null
-                ? EPiServer.ServiceLocation.ServiceLocator.Current.GetInstance<EPiServer.IContentLoader>().Get<MediaData>(imageFile.ContentGuid)
-                : null;
-
-            string language = null;
-            var iLocalizable = model as ILocalizable;
-            if (iLocalizable != null && iLocalizable.Language != null)
-            {
-                language = iLocalizable.Language.Name;
-            }
-
-            var image = (ImageFile)currentContent;
-            var imageUrl = UrlResolver.Current.GetUrl(image.ContentLink, language, new VirtualPathArguments() { ContextMode = ContextMode.Default });
-
-            return imageUrl;
-        }
-
-        //for blocks
-        public static string GetImageSrc(this ImageFile imageFile, BlockData model)
-        {
-            var currentContent = imageFile != null
-                ? EPiServer.ServiceLocation.ServiceLocator.Current.GetInstance<EPiServer.IContentLoader>().Get<MediaData>(imageFile.ContentGuid)
-                : null;
-
-            string language = null;
-            var iLocalizable = model as ILocalizable;
-            if (iLocalizable != null && iLocalizable.Language != null)
-            {
-                language = iLocalizable.Language.Name;
-            }
-
-            var image = (ImageFile)currentContent;
-            var imageUrl = UrlResolver.Current.GetUrl(image.ContentLink, language, new VirtualPathArguments() { ContextMode = ContextMode.Default });
-
-            return imageUrl;
-        }
-
         public static string GetImageAlt(this ContentReference imageFile)
         {
             var currentContent = !ContentReference.IsNullOrEmpty(imageFile)
@@ -119,18 +20,75 @@ namespace EPiServerMvcBootstrap.Extensions
 
             var image = (ImageFile)currentContent;
 
-            return image.Description;
+            return GetImageAlt(image);
         }
 
         public static string GetImageAlt(this ImageFile imageFile)
         {
-            var currentContent = imageFile != null
-                ? EPiServer.ServiceLocation.ServiceLocator.Current.GetInstance<EPiServer.IContentLoader>().Get<MediaData>(imageFile.ContentGuid)
+            if (imageFile != null)
+            {
+                return imageFile.Description;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public static string GetImageSrc(this ContentReference imageFile, BlockData model)
+        {
+            var currentContent = !ContentReference.IsNullOrEmpty(imageFile)
+                ? EPiServer.ServiceLocation.ServiceLocator.Current.GetInstance<EPiServer.IContentLoader>().Get<MediaData>(imageFile)
                 : null;
 
-            var image = (ImageFile)currentContent;
+            var theFile = (ImageFile)currentContent;
+            return theFile.GetImageSrc(model);
+        }
 
-            return image.Description;
+        public static string GetImageSrc(this ImageFile imageFile, BlockData model)
+        {
+            string language = null;
+            var iLocalizable = model as ILocalizable;
+            if (iLocalizable != null && iLocalizable.Language != null)
+            {
+                language = iLocalizable.Language.Name;
+            }
+
+            string imageUrl = string.Empty;
+            if (imageFile != null)
+            {
+                imageUrl = UrlResolver.Current.GetUrl(imageFile.ContentLink, language, new VirtualPathArguments() { ContextMode = ContextMode.Default });
+            }
+
+            return imageUrl;
+        }
+
+        public static string GetImageSrc(this ContentReference imageFile, PageData model)
+        {
+            var currentContent = !ContentReference.IsNullOrEmpty(imageFile)
+                ? EPiServer.ServiceLocation.ServiceLocator.Current.GetInstance<EPiServer.IContentLoader>().Get<MediaData>(imageFile)
+                : null;
+
+            var theFile = ((ImageFile)currentContent);
+            return theFile.GetImageSrc(model);
+        }
+
+        public static string GetImageSrc(this ImageFile imageFile, PageData model)
+        {
+            string language = null;
+            var iLocalizable = model as ILocalizable;
+            if (iLocalizable != null && iLocalizable.Language != null)
+            {
+                language = iLocalizable.Language.Name;
+            }
+
+            string imageUrl = string.Empty;
+            if (imageFile != null)
+            {
+                imageUrl = UrlResolver.Current.GetUrl(imageFile.ContentLink, language, new VirtualPathArguments() { ContextMode = ContextMode.Default });
+            }
+
+            return imageUrl;
         }
     }
 }
