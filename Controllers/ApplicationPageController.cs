@@ -10,11 +10,19 @@ using System.Text;
 using System.Threading.Tasks;
 using EPiServer;
 using Castle.DynamicProxy;
+using EPiServer.ServiceLocation;
 
 namespace EPiServerMvcBootstrap.Controllers
 {
     public abstract class ApplicationPageController<T> : PageController<T> where T : TypedPageData
     {
+        private readonly IContentRepository _contentRepository;
+
+        protected IContentRepository ContentRepository
+        {
+            get { return _contentRepository ?? ServiceLocator.Current.GetInstance<IContentRepository>(); }
+        }
+
         public ApplicationPageController()
         {
         }
@@ -88,6 +96,11 @@ namespace EPiServerMvcBootstrap.Controllers
             }
 
             return className;
+        }
+
+        public BlockData GetContentReferenceContent(ContentReference contentReferenceItem)
+        {
+            return ContentRepository.Get<EPiServer.Core.BlockData>(contentReferenceItem);
         }
     }
 }
