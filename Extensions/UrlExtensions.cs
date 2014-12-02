@@ -11,7 +11,14 @@ namespace EPiServerMvcBootstrap.Extensions
     {
         public static string GetFriendlyUrl(this Url url)
         {
-            return url.ToString().GetFriendlyUrl();
+            var friendlyUrl = string.Empty;
+
+            if (url != null)
+            {
+                friendlyUrl = url.ToString().GetFriendlyUrl();
+            }
+
+            return friendlyUrl;
         }
     }
 }

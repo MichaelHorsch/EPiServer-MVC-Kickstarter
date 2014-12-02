@@ -19,7 +19,7 @@ namespace EPiServerMvcBootstrap.Extensions
             if (!string.IsNullOrEmpty(str))
             {
                 // Get the friendly URL
-                UrlBuilder url = new UrlBuilder(str);
+                var url = new UrlBuilder(str);
 
                 // Only set it if the querylanguage is not already determined.
                 if (string.IsNullOrEmpty(url.QueryLanguage))
